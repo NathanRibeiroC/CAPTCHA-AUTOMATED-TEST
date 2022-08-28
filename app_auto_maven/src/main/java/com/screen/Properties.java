@@ -1,13 +1,21 @@
 package com.screen;
 
 public enum Properties {
-    ACCOUNT1 (3.303e+23, 2.4397e6),
-    ACCOUNT2   (4.869e+24, 6.0518e6);
+    ACCOUNT1 ("elianasants22@gmail.com", "b569da99"),
+    ACCOUNT2   ("danworkhoff@gmail.com", "ZBw%0Y8j0W90");
 
-    private final double email;   // in kilograms
-    private final double password; // in meters
-    Properties(double email, double password) {
+    private final String email;   // in kilograms
+    private final String password; // in meters
+    Properties(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    String getEmail(){
+        return email;
+    }
+
+    String getPassword(){
+        return password;
     }
 }
