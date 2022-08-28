@@ -49,6 +49,7 @@ public class GeneralActions {
 
     public void scrollUp() throws InterruptedException{
         Dimension size = driver.manage().window().getSize();
+        System.out.println("Size: " + size);
         int starty = (int) (size.height * 0.80);
         int endy = (int) (size.height * 0.20);
         int startx = size.width / 2;
@@ -60,5 +61,20 @@ public class GeneralActions {
                 .release()
                 .perform();
         waitInSeconds(SMALL_TIME);
+    }
+
+    public void clickOnSearch() throws InterruptedException{
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.tap(new PointOption().withCoordinates(850, 50)).perform();
+    }
+
+    public void writeUsingId(String id, String content){
+        MobileElement element = (MobileElement) driver.findElementById(id);
+        element.sendKeys(content);
+    }
+
+    public void writeUsingXpath(String xpath, String content){
+        MobileElement element = (MobileElement) driver.findElementByXPath(xpath);
+        element.sendKeys(content);
     }
 }
