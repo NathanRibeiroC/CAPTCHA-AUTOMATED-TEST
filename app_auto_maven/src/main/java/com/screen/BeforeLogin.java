@@ -22,6 +22,8 @@ public class BeforeLogin {
     public static final String NEGAR_ACESSAR_CONTATO_XPATH = "//android.widget.Button[@text=\"NEGAR\"]";
     public static final String PULAR_BUTTON_NUMERO_TELEFONE_XPATH = "//android.widget.TextView[@text=\"Pular\"]";
     public static final String ENTRAR_OPTION_ALTERNATIVE_LOGIN_XPATH = "//android.widget.TextView[@text=\"Já tem uma conta? Entrar\"]";
+    public static final String DISMISS_CONTINUAR_COM_CONTA_ID = "com.zhiliaoapp.musically:id/fqt";
+    public static final String FAZER_LOGIN_OU_CRIAR_CONTA_XPATH = "//android.widget.TextView[@text=\"Fazer login ou criar conta\"]";
 
     AndroidDriver driver;
     GeneralActions ga;
@@ -38,21 +40,33 @@ public class BeforeLogin {
         ga.clickByXpath(COMECAR_ASSISTIR_BUTTON_XPATH);
         ga.scrollUp();
         ga.clickByXpath(PERFIL_ICON_XPATH);
-        String a  = driver.getPageSource();
         selectLoginOption();
         dismissDisclaimerAfterLogin();
     }
 
     public void selectLoginOption() throws InterruptedException{
         try{
-            ga.clickByXpath(CONTINUAR_COM_GOOGLE_LOGIN_OPTION_XPATH);
-            ga.clickByXpath(LOGIN_WITH_GOOGLE_ACCOUNT_OPTION_XPATH);
+            loginOption1();
         }catch (Exception e){
-            ga.clickByXpath(ENTRAR_OPTION_ALTERNATIVE_LOGIN_XPATH);
-            ga.clickByXpath(CONTINUAR_COM_GOOGLE_LOGIN_OPTION_XPATH);
-            ga.clickByXpath(LOGIN_WITH_GOOGLE_ACCOUNT_OPTION_XPATH);
+            try{
+                ga.clickById(DISMISS_CONTINUAR_COM_CONTA_ID);
+                ga.clickByXpath(FAZER_LOGIN_OU_CRIAR_CONTA_XPATH);
+                loginOption1();
+            }catch (Exception er){
+                loginOption2();
+                System.out.println(er.getMessage());
+            }
             System.out.println(e.getMessage());
         }
+    }
+
+    public void loginOption1() throws InterruptedException {
+        ga.clickByXpath(CONTINUAR_COM_GOOGLE_LOGIN_OPTION_XPATH);
+        ga.clickByXpath(LOGIN_WITH_GOOGLE_ACCOUNT_OPTION_XPATH);
+    }
+
+    public void loginOption2() throws InterruptedException {
+        ga.clickByXpath(ENTRAR_OPTION_ALTERNATIVE_LOGIN_XPATH);
     }
 
     public void dismissDisclaimerAfterLogin() throws InterruptedException {

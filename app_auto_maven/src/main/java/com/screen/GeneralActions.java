@@ -8,6 +8,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class GeneralActions {
@@ -68,13 +69,25 @@ public class GeneralActions {
         touchAction.tap(new PointOption().withCoordinates(850, 50)).perform();
     }
 
-    public void writeUsingId(String id, String content){
+    public void writeUsingId(String id, String content) throws InterruptedException{
         MobileElement element = (MobileElement) driver.findElementById(id);
         element.sendKeys(content);
+        waitInSeconds(SMALL_TIME);
     }
 
-    public void writeUsingXpath(String xpath, String content){
+    public void writeUsingXpath(String xpath, String content) throws InterruptedException{
         MobileElement element = (MobileElement) driver.findElementByXPath(xpath);
         element.sendKeys(content);
+        waitInSeconds(SMALL_TIME);
+    }
+
+    public String getTextUsingId(String id){
+        MobileElement element = (MobileElement) driver.findElementById(id);
+        return element.getText();
+    }
+
+    public List<MobileElement> getElementsById(String id){
+        List<MobileElement> elements = (List<MobileElement>) driver.findElementsById(id);
+        return elements;
     }
 }
