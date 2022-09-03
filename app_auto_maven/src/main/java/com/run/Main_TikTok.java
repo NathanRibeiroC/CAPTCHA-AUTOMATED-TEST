@@ -1,5 +1,7 @@
 package com.run;
 
+import com.tiktok.AfterLogin;
+import com.tiktok.BeforeLogin;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -8,9 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.screen.*;
-
-public class Main {
+public class Main_TikTok {
     public static void main(String args[]) throws MalformedURLException, InterruptedException {
 //        VERY USEFUL:         String a  = driver.getPageSource(); debug to view all the DOM content of a screen
         for (int i=0; i<60;i++){

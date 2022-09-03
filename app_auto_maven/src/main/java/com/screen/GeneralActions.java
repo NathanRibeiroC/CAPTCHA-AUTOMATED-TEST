@@ -30,6 +30,11 @@ public class GeneralActions {
         waitInSeconds(SMALL_TIME);
     }
 
+    public void clickByMobileElement(MobileElement element) throws InterruptedException{
+        element.click();
+        waitInSeconds(SMALL_TIME);
+    }
+
     public void waitInSeconds(int waitTime) throws InterruptedException {
         TimeUnit.SECONDS.sleep(waitTime);
     }
