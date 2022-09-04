@@ -1,17 +1,9 @@
-package com.tiktok;
+package com.tiktok_utils;
 
 import com.screen.GeneralActions;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
-
-public class BeforeLogin {
+public class BeforeLoginTikTok {
     public static final int SMALL_TIME = 10;
     public static final int MEDIUM_TIME = 14;
     public static final String PERFIL_ICON_XPATH = "//android.widget.TextView[@text=\"Perfil\"]/..";
@@ -29,7 +21,7 @@ public class BeforeLogin {
     AndroidDriver driver;
     GeneralActions ga;
 
-    public BeforeLogin(AndroidDriver driver){
+    public BeforeLoginTikTok(AndroidDriver driver){
         this.driver = driver;
         this.ga = new GeneralActions(driver);
     }

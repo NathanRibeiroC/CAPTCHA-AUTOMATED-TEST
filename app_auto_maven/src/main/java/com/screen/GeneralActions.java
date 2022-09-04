@@ -69,9 +69,19 @@ public class GeneralActions {
         waitInSeconds(SMALL_TIME);
     }
 
-    public void clickOnSearch() throws InterruptedException{
+    public void clickOnTopRight() throws InterruptedException{
         TouchAction touchAction = new TouchAction(driver);
         touchAction.tap(new PointOption().withCoordinates(850, 50)).perform();
+    }
+
+    public void clickOnBottomRight() throws InterruptedException{
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.tap(new PointOption().withCoordinates(800, 1550)).perform();
+    }
+
+    public void clickOnTopLeft() throws InterruptedException{
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.tap(new PointOption().withCoordinates(50, 50)).perform();
     }
 
     public void writeUsingId(String id, String content) throws InterruptedException{

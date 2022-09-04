@@ -1,4 +1,4 @@
-package com.tiktok;
+package com.tiktok_utils;
 
 import com.screen.GeneralActions;
 import io.appium.java_client.MobileElement;
@@ -7,9 +7,8 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.offset.PointOption;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class AfterLogin {
+public class AfterLoginTikTok {
     // id click on profile during scroll view com.zhiliaoapp.musically:id/he6
     // comentarios on scroll com.zhiliaoapp.musically:id/an    // compartilhar com.zhiliaoapp.musically:id/flh
     public static String SEARCH_CHANNEL = "dicastbrasil";
@@ -40,13 +39,13 @@ public class AfterLogin {
     String profileName;
     String[] followersA={};
 
-    public AfterLogin(AndroidDriver driver){
+    public AfterLoginTikTok(AndroidDriver driver){
         this.driver = driver;
         this.ga = new GeneralActions(driver);
     }
 
     public void followPeople() throws InterruptedException {
-        ga.clickOnSearch();
+        ga.clickOnTopRight();
         ga.writeUsingXpath(PROCURAR_WRITE_FIELD_XPATH, SEARCH_CHANNEL);
         ga.clickByXpath(RESULT_TAB_XPATH);
         ga.clickByXpath(POS_RESULT_TAB_XPATH);

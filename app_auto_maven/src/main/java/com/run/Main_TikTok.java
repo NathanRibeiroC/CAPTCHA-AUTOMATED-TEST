@@ -1,7 +1,7 @@
 package com.run;
 
-import com.tiktok.AfterLogin;
-import com.tiktok.BeforeLogin;
+import com.tiktok_utils.AfterLoginTikTok;
+import com.tiktok_utils.BeforeLoginTikTok;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -22,10 +22,10 @@ public class Main_TikTok {
                 dc.setCapability("appActivity","com.ss.android.ugc.aweme.splash.SplashActivity");
                 AndroidDriver<AndroidElement> driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),dc);
 
-                BeforeLogin bf = new BeforeLogin(driver);
+                BeforeLoginTikTok bf = new BeforeLoginTikTok(driver);
                 bf.login();
 
-                AfterLogin af = new AfterLogin(driver);
+                AfterLoginTikTok af = new AfterLoginTikTok(driver);
                 af.followPeople();
 
                 driver.resetApp() ;
