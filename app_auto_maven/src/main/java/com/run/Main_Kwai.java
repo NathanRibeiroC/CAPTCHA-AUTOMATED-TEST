@@ -13,7 +13,7 @@ import java.net.URL;
 public class Main_Kwai {
     public static void main(String args[]) throws MalformedURLException, InterruptedException {
 //        VERY USEFUL:         String a  = driver.getPageSource(); debug to view all the DOM content of a screen
-        for (int i=0; i<60;i++){
+        for(;;){
             try{
                 DesiredCapabilities dc = new DesiredCapabilities();
                 dc.setCapability(MobileCapabilityType.DEVICE_NAME, "127.0.0.1:5555");
@@ -25,8 +25,8 @@ public class Main_Kwai {
                 BeforeLoginKwai bl = new BeforeLoginKwai(driver);
                 bl.login();
 
-              AfterLoginKwai af = new AfterLoginKwai(driver);
-              af.followPeople();
+                AfterLoginKwai af = new AfterLoginKwai(driver);
+                af.followPeople();
 
                 driver.resetApp() ;
             }catch(Exception e){

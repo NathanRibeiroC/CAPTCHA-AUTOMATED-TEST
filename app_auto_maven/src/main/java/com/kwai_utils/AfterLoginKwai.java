@@ -5,10 +5,13 @@ import io.appium.java_client.android.AndroidDriver;
 
 import java.util.List;
 
+import static com.screen.GeneralActions.Direction.UP;
+
 public class AfterLoginKwai {
     public static final String SEARCH_ID="com.kwai.video:id/search_editor";
-    public static final String SEARCH_OPTION_XPATH="//android.widget.TextView[@text=\"kwai_series\"]";
+    public static final String SEARCH_OPTION_XPATH="//android.widget.TextView[@text=\"pipocando filmes\"]";
     public static final String PROFILE_XPATH="//android.widget.TextView[@text=\"ID:Series.22\"]/..";
+    public static final String PROFILE_XPATH1="//android.widget.TextView[@text=\"Seguir\"]/..";
     public static final String SEGUIDORES_XPATH="//android.widget.TextView[@text=\"Seguidores\"]/..";
     public static final String FOLLOWERS_LIST_XPATH = "//android.widget.Button[@text=\"Seguir\"]/..";
     public static final String USER_NAME_ID = "com.kwai.video:id/title_tv";
@@ -29,27 +32,35 @@ public class AfterLoginKwai {
         //after login
         ga.clickOnTopRight();
         ga.waitInSeconds(10);
-        ga.writeUsingId(SEARCH_ID,"KWAI_SERIES");
+        ga.writeUsingId(SEARCH_ID,"Pipocandoo Filmes");
         ga.clickByXpath(SEARCH_OPTION_XPATH);
-        ga.clickByXpath(PROFILE_XPATH);
+        String a  = driver.getPageSource();
+        ga.clickByXpath(PROFILE_XPATH1);
         ga.clickByXpath(SEGUIDORES_XPATH);
         sendMessagesAndFollow(FOLLOWERS_LIST_XPATH);
-        String a  = driver.getPageSource();
     }
 
     public void sendMessagesAndFollow(String xpath) throws InterruptedException{
         String b;
-        List<MobileElement> elementsOne = (List<MobileElement>) driver.findElementsByXPath(xpath);
-        for(MobileElement e: elementsOne){
-            ga.clickByMobileElement(e);
-            b  = driver.getPageSource();
-            writeMessage();
-            ga.clickById(FOLLOW_BUTTON_ID);
+        for(;;) {
+            int arraySize=0;
+            List<MobileElement> elementsOne = (List<MobileElement>) driver.findElementsByXPath(xpath);
+            List<MobileElement> elementsOne1 = (List<MobileElement>) driver.findElementsByXPath(xpath);
+            arraySize = elementsOne.size();
+            for (int i =0; i<arraySize;i++) {
+                ga.clickByMobileElement(elementsOne.get(i));
+                writeMessage();
+                ga.clickById(FOLLOW_BUTTON_ID);
+                ga.clickOnTopLeft();
+                elementsOne = (List<MobileElement>) driver.findElementsByXPath(xpath);
+                arraySize = elementsOne.size();
+            }
+            ga.swipeScreen(UP);
+            ga.waitInSeconds(20);
         }
     }
 
     public void writeMessage() throws InterruptedException{
-
         String message;
         message = generateMessage(ga.getTextUsingId(USER_NAME_ID));
         ga.clickById(MORE_BUTTON_ID);
@@ -60,10 +71,11 @@ public class AfterLoginKwai {
     }
 
     public String generateMessage(String followerName){
-        String message = "Fala aí " + followerName + ", curti demais seu feed. Eu também curto séries, filmes e cinema. " +
-                "Eu e meu parceiro estamos pra fazer umas lives aqui na plataforma abordando cinema, trailers, séries e outros temas diversos, mas pra isso é necessário" +
-                " 1000 seguidores, anima seguir nosso perfil pra gente chegar nessa meta ? " +
-                " Lá tem um vídeo apresentando a iniciativa. De qualquer forma vou te seguir aqui, e não te mando mais mensagem. Obrigado! Tudo de bom !!";
+        String message = "Fala aí " + followerName.substring(0, (followerName.length()/2)) + ", curti demais seu feed. Eu também curto séries, filmes e cinema. " +
+                "2 amigos meus estão pra fazer umas lives aqui na plataforma abordando cinema, trailers, séries e outros temas diversos, mas pra isso é necessário" +
+                " 1000 seguidores, anima seguir no perfil deles pra gente chegar nessa meta ? 10% do lucro vai pra caridade !" +
+                " Lá tem um vídeo apresentando a iniciativa. De qualquer forma vou te seguir aqui, e não te incomodo mais. Obrigado! Tudo de bom !!\n" +
+                "https://s.kw.ai/u/fiLCbb5k";
         return message;
     }
 //    public void selectLoginOption() throws InterruptedException{

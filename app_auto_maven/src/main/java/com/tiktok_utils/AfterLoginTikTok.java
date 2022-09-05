@@ -33,6 +33,7 @@ public class AfterLoginTikTok {
     public static final String SEND_BUTTON_ID = "com.zhiliaoapp.musically:id/fio";
     public static final String RETURN_BUTTON_CHAT_SCREEN_ID = "com.zhiliaoapp.musically:id/cq5";
     public static final String SEGUIR_BUTTON_ID = "com.zhiliaoapp.musically:id/eme";
+    public static final String FOLLOWERS_LIST_XPATH1 = "com.kwai.video:id/name";
 
     AndroidDriver driver;
     GeneralActions ga;
@@ -52,7 +53,7 @@ public class AfterLoginTikTok {
         String profileName = ga.getTextUsingId(PROFILE_NAME_ID);
         ga.clickByXpath(SEGUIDORES_BUTTON_XPATH);
         String a  = driver.getPageSource();
-        sendMessagesAndFollow(FOLLOWERS_LIST_XPATH);
+        sendMessagesAndFollow(FOLLOWERS_LIST_XPATH1);
     }
 
     public void sendMessagesAndFollow(String xpath) throws InterruptedException{

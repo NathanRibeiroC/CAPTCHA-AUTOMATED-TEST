@@ -18,7 +18,7 @@ public class BeforeLoginKwai {
     }
 //KWAI_SÉRIES
     public void login() throws InterruptedException {
-          ga.waitInSeconds(10);
+          ga.waitInSeconds(20);
           ga.clickOnBottomRight();
           ga.clickByXpath(CONTINUAR_COM_GOOGLE_XPATH);
           ga.clickByXpath(GOOGLE_USER_LOGIN_OPTION_XPATH);
