@@ -1,7 +1,7 @@
 package com.run;
 
-import com.kwai_utils.AfterLoginKwai;
-import com.kwai_utils.BeforeLoginKwai;
+import com.tiktok_utils.AfterLoginTikTok;
+import com.tiktok_utils.BeforeLoginTikTok;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -10,22 +10,22 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Main_Kwai {
+public class Main_TikTok {
     public static void main(String args[]) throws MalformedURLException, InterruptedException {
 //        VERY USEFUL:         String a  = driver.getPageSource(); debug to view all the DOM content of a screen
-        for(;;){
+        for (int i=0; i<60;i++){
             try{
                 DesiredCapabilities dc = new DesiredCapabilities();
-                dc.setCapability(MobileCapabilityType.DEVICE_NAME, "127.0.0.1:5585");
+                dc.setCapability(MobileCapabilityType.DEVICE_NAME, "127.0.0.1:5555");
                 dc.setCapability("platformName", "android");
-                dc.setCapability("appPackage","com.kwai.video");
-                dc.setCapability("appActivity","com.yxcorp.gifshow.homepage.HomeActivity");
-                AndroidDriver<AndroidElement> driver = new AndroidDriver(new URL("http://127.0.0.1:4726/wd/hub"),dc);
+                dc.setCapability("appPackage","com.zhiliaoapp.musically");
+                dc.setCapability("appActivity","com.ss.android.ugc.aweme.splash.SplashActivity");
+                AndroidDriver<AndroidElement> driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),dc);
 
-                BeforeLoginKwai bl = new BeforeLoginKwai(driver,"danworkhoff@gmail.com");
-                bl.login();
+                BeforeLoginTikTok bf = new BeforeLoginTikTok(driver);
+                bf.login();
 
-                AfterLoginKwai af = new AfterLoginKwai(driver,"Pipocandoo Filmes","pipocando filmes");
+                AfterLoginTikTok af = new AfterLoginTikTok(driver);
                 af.followPeople();
 
                 driver.resetApp() ;
@@ -37,3 +37,4 @@ public class Main_Kwai {
 //        Assert.assertEquals(driver.findElementById("com.zhiliaoapp.musically:id/ad7").getText(),"Não conseguiu entrar?");
     }
 }
+

@@ -20,7 +20,7 @@ public class Main_Kwai {
                 dc.setCapability("platformName", "android");
                 dc.setCapability("appPackage","com.kwai.video");
                 dc.setCapability("appActivity","com.yxcorp.gifshow.homepage.HomeActivity");
-                AndroidDriver<AndroidElement> driver = new AndroidDriver(new URL("http://127.0.0.1:4726/wd/hub"),dc);
+                AndroidDriver<AndroidElement> driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),dc);
 
                 BeforeLoginKwai bl = new BeforeLoginKwai(driver,"danworkhoff@gmail.com");
                 bl.login();
